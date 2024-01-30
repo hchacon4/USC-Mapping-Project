@@ -1,5 +1,5 @@
 # USC-Mapping-Project
-LA Assessor Portal: Build modular Eris/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.
+LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.
 
 ### Work Flow
 We maintain a main branch and a develop branch. The main branch will contain functioning, tested code.
