@@ -8,4 +8,4 @@ Main is considered "live." Only merge develop and main when you are sure the dev
 #### New feature
 * Branch from dev with feature/ format.
 * When ready to submit, create a pull request.
-** The request will ideally be reviewed by a team member and a stakeholder before merging with dev.
+  * The request will ideally be reviewed by a team member and a stakeholder before merging with dev.
