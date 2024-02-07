@@ -2,7 +2,7 @@
 LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.
 
 ### Work Flow
-We maintain a main branch and a develop branch. The main branch will contain functioning, tested code.
+We maintain a main branch and a develop branch. The main branch will contain functioning, tested code.  
 Main is considered "live." Only merge develop and main when you are sure the develop branch is functioning and tested.
 
 #### New feature
