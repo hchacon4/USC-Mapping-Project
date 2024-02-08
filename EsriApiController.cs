@@ -4,28 +4,35 @@ using System.Threading.Tasks;
 
 namespace MyApplication.Controllers;
 
-public class MyApiController : ControllerBase
+[ApiController]
+[Route("api/data")]
+public class DataController : ControllerBase
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public MyApiController(IHttpClientFactory httpClientFactory)
+    public DataController(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetExternalData()
+    public async Task<IActionResult> GetData()
     {
         var client = _httpClientFactory.CreateClient();
-        var response = await client.GetAsync("https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json");
+        var requestUri = "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+        var response = await client.GetAsync(requestUri);
 
         if (response.IsSuccessStatusCode)
         {
-            var content = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("content");
-            return Ok(content);
+            var responseData = await response.Content.ReadAsStringAsync();
+            return Ok(responseData);
         }
 
         return StatusCode(500, "Error accessing external service");
     }
 }
+
+//outputs to: http://localhost:5295/api/data
+//to find PID: sudo lsof -i :5295
+//to kill process: sudo kill -9 PID
+//to run: cd EsriBackend FOLLOWED BY dotnet run
