@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj": {}
+    "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/deploy_test.csproj": {}
   },
   "projects": {
-    "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj": {
+    "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/deploy_test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj",
+        "projectUniqueName": "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/deploy_test.csproj",
         "projectName": "deploy_test",
-        "projectPath": "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj",
-        "packagesPath": "/Users/hugochacon/.nuget/packages/",
-        "outputPath": "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/obj/",
+        "projectPath": "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/deploy_test.csproj",
+        "packagesPath": "/Users/henrysazo/.nuget/packages/",
+        "outputPath": "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/hugochacon/.nuget/NuGet/NuGet.Config"
+          "/Users/henrysazo/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
