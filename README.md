@@ -6,10 +6,10 @@ We maintain a main branch and a develop branch. The main branch will contain fun
 Main is considered "live." Only merge develop and main when you are sure the develop branch is functioning and tested.
 
 #### New feature
-* Branch from dev with `feature/` format.
+* Branch from dev with `feature/<featurename>` format.
 * When ready to submit, create a pull request.
   * The request will ideally be reviewed by a team member and a stakeholder before merging with dev.
-* Team member merges develop to main branch.  
+* Team member merges feature to develop branch.  
 
 Remember:
 * Merge `feature/<featurename>` to `dev` and not directly to `main`.
