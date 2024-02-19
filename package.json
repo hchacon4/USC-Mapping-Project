@@ -5,7 +5,7 @@
   },
   "name": "usc401s24_deploy",
   "description": "LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "deploy_test/wwwroot/js/site.js",
   "devDependencies": {},
   "scripts": {
