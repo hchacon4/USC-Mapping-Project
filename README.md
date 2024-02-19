@@ -1,7 +1,7 @@
 # USC-Mapping-Project
 LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.
 
-###Website
+### Website
 [mappingproject.azurewebsites.net](https://mappingproject.azurewebsites.net/)
 
 ### Work Flow
