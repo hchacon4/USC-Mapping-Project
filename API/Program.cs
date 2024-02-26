@@ -25,7 +25,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseDefaultFiles(); //must be called before UseStaticFiles to serve the default file.
+app.UseStaticFiles();
 app.MapControllers();
 
 app.Run();
