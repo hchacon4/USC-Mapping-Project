@@ -4,16 +4,16 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class EsriBackendController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<EsriBackendController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public EsriBackendController(ILogger<EsriBackendController> logger)
     {
         _logger = logger;
     }
