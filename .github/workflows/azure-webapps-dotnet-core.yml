@@ -48,8 +48,10 @@ jobs:
       # Step to install dependencies and build React app
       - name: Install dependencies and build React app
         run: |
+          cd Mapping-System
           npm install
           npm run build
+          cd ..
           
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
