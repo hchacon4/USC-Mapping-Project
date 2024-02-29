@@ -3,7 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deploy_test", "deploy_test\deploy_test.csproj", "{C8AE1B1D-727A-47B4-AC67-CC291E5C9236}"
+# Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deploy_test", "deploy_test\deploy_test.csproj", "{C8AE1B1D-727A-47B4-AC67-CC291E5C9236}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{C8AE1B1D-727A-47B4-AC67-CC291E5C9236}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
