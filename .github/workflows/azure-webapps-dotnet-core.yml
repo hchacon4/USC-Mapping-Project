@@ -54,12 +54,12 @@ jobs:
           npm run buildOnly
           cd ..
 
-      - name: Upload node artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: node-app
-          # path: Mapping-System
-          path: dist
+      # - name: Upload node artifact for deployment job
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: node-app
+      #     # path: Mapping-System
+      #     path: dist
           
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
