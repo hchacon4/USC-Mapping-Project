@@ -50,7 +50,8 @@ jobs:
         run: |
           cd Mapping-System
           npm install
-          npm run build
+          # npm run build
+          npm run buildOnly
           cd ..
           
       - name: Set up .NET Core
