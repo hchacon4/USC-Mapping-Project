@@ -1,0 +1,63 @@
+name: Build frontend (React) and API (ASP.Net Core)
+env:
+  AZURE_WEBAPP_NAME: mappingproject    # set this to the name of your Azure Web App
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '8.0.*'                 # set this to the .NET Core version to use
+
+on:
+  pull_request:
+    branches: [ "develop", "main" ]
+    
+    types:
+      - opened
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Step to set up Node.js for building React app
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step to install dependencies and build React app
+      - name: Install dependencies and build React app
+        run: |
+          cd Mapping-System
+          npm install
+          # npm run build
+          npm run buildOnly
+          cd ..
+          
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Set up dependency caching for faster builds
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      # Step to copy React build output into .NET Core publish directory
+      - name: Copy React build output to .NET Core publish directory
+        run: |
+          ls Mapping-System/dist
+          cp -a Mapping-System/dist/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
