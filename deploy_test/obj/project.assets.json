@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/deploy_test.csproj",
+      "projectUniqueName": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj",
       "projectName": "deploy_test",
-      "projectPath": "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/deploy_test.csproj",
-      "packagesPath": "/Users/henrysazo/.nuget/packages/",
-      "outputPath": "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/obj/",
+      "projectPath": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj",
+      "packagesPath": "/Users/hugochacon/.nuget/packages/",
+      "outputPath": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/henrysazo/.nuget/NuGet/NuGet.Config"

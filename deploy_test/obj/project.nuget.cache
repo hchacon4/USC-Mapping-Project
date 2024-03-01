@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3obfHFYk9gPoyy/nIy7gECJ6WT6ogZRD4UYvajdv2uuMtXfVEf98inX7nsOcX9CejvixylfYa6P2FEJ1Dkyp4Q==",
+  "dgSpecHash": "+SlWoPa9Z0U8D4JFlJTbM9bBjmDyvLFpHJIzfWltsldwfbBLqxml6noaOeZupCutbv/5TUdHye9qgRqR84mAgQ==",
   "success": true,
-  "projectFilePath": "/Users/henrysazo/Desktop/CSCI401/stuff/USC-Mapping-Project/deploy_test/deploy_test.csproj",
+  "projectFilePath": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
