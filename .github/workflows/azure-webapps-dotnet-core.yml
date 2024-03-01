@@ -84,7 +84,7 @@ jobs:
       - name: Copy React build output to .NET Core publish directory
         run: |
           ls Mapping-System/dist
-          cp -a Mapping-System/dist/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
+          cp -a Mapping-System/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
