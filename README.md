@@ -15,5 +15,5 @@ Main is considered "live." Only merge develop and main when you are sure the dev
   * The request will ideally be reviewed by a team member and a stakeholder before merging with dev.
 * Team member merges feature to develop branch.
 * Remember:
-  * Merge `feature/<featurename>` to `dev` and not directly to `main`.
-  * Only push `dev` to `main` if you are certain it is functional and tested.
+  * Merge `feature/<featurename>` to `develop` and not directly to `main`.
+  * Only push `develop` to `main` if you are certain it is functional and tested.
