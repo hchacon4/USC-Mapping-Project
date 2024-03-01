@@ -82,7 +82,9 @@ jobs:
 
       # Step to copy React build output into .NET Core publish directory
       - name: Copy React build output to .NET Core publish directory
-        run: cp -a Mapping-System/build/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
+        run: |
+          ls
+          cp -a Mapping-System/build/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
