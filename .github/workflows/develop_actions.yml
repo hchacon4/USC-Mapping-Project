@@ -6,7 +6,8 @@ env:
 
 on:
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "main" ]
+    
     types:
       - opened
   workflow_dispatch:
