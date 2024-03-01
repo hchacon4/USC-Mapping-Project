@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj": {}
+    "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj": {}
   },
   "projects": {
-    "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj": {
+    "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj",
+        "projectUniqueName": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj",
         "projectName": "deploy_test",
-        "projectPath": "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj",
+        "projectPath": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj",
         "packagesPath": "/Users/hugochacon/.nuget/packages/",
-        "outputPath": "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/obj/",
+        "outputPath": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/hugochacon/.nuget/NuGet/NuGet.Config"

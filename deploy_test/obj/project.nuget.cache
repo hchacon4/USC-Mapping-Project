@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "doF+lO2KCaSUC0vjSYeSQqZvtr7KOa5ERzcoc7fiv3MuGBx7OfuB9+PqrPKUpxxuCnbVbnc91+R6cEf2PewpQg==",
+  "dgSpecHash": "+SlWoPa9Z0U8D4JFlJTbM9bBjmDyvLFpHJIzfWltsldwfbBLqxml6noaOeZupCutbv/5TUdHye9qgRqR84mAgQ==",
   "success": true,
-  "projectFilePath": "/Users/hugochacon/CodeProjects/deploy_test/deploy_test/deploy_test.csproj",
+  "projectFilePath": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/deploy_test.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
