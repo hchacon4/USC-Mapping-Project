@@ -14,7 +14,7 @@
         "outputPath": "/Users/hugochacon/CodeProjects/USC-Mapping-Project/deploy_test/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/hugochacon/.nuget/NuGet/NuGet.Config"
+          "/Users/henrysazo/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
