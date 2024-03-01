@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/deploy_test.props" />
+</Project>

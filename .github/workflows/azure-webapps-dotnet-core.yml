@@ -39,6 +39,28 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # Step to set up Node.js for building React app
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step to install dependencies and build React app
+      - name: Install dependencies and build React app
+        run: |
+          cd Mapping-System
+          npm install
+          # npm run build
+          npm run buildOnly
+          cd ..
+
+      # - name: Upload node artifact for deployment job
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: node-app
+      #     # path: Mapping-System
+      #     path: dist
+          
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
         with:
@@ -57,6 +79,12 @@ jobs:
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      # Step to copy React build output into .NET Core publish directory
+      - name: Copy React build output to .NET Core publish directory
+        run: |
+          ls Mapping-System/dist
+          cp -a Mapping-System/dist/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
