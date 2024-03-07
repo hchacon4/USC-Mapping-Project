@@ -1,32 +1,68 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class EsribackendController : ControllerBase
+public class EsriBackendController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    private readonly ILogger<EsriBackendController> _logger;
+    private readonly HttpClient _httpClient;
 
-    private readonly ILogger<EsribackendController> _logger;
-
-    public EsribackendController(ILogger<EsribackendController> logger)
+    public EsriBackendController(ILogger<EsriBackendController> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
+        _httpClient = httpClientFactory.CreateClient();
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpGet("GetBaseMap")]
+    public async Task<IActionResult> GetBaseMap()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        return await GetLayerData("https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer");
+    }
+
+    [HttpGet("GetHighResImagery2014")]
+    public async Task<IActionResult> GetHighResImagery2014()
+    {
+        return await GetLayerData("https://cache.gis.lacounty.gov/cache/rest/services/LACounty_Cache/LACounty_Aerial_2014/MapServer");
+    }
+
+    [HttpGet("GetMapCacheLayers")]
+    public async Task<IActionResult> GetMapCacheLayers()
+    {
+        return await GetLayerData("https://cache.gis.lacounty.gov/cache/rest/services/LACounty_Cache");
+    }
+
+    [HttpGet("GetDynamicLayers")]
+    public async Task<IActionResult> GetDynamicLayers()
+    {
+        return await GetLayerData("https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic");
+    }
+
+    private async Task<IActionResult> GetLayerData(string baseUrl)
+    {
+        try
         {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+            var response = await _httpClient.GetAsync(baseUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return Ok(content);
+            }
+            return StatusCode((int)response.StatusCode, response.ReasonPhrase);
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, $"Error fetching data from {baseUrl}");
+            return StatusCode(500, "Internal server error");
+        }
     }
 }
+
+
+//Base Map: http://localhost:5053/EsriBackend/GetBaseMap
+//2014 High-Res Imagery: http://localhost:5053/EsriBackend/GetHighResImagery2014
+//Map Cache Layers: http://localhost:5053/EsriBackend/GetMapCacheLayers
+//Dynamic Layers: http://localhost:5053/EsriBackend/GetDynamicLayers
