@@ -1,8 +1,11 @@
 #_assessor_i, #_pais, #_map_search{
   width: auto;
-  background-color: aqua;
   margin: 2px;
   font-size: .9em;
+}
+
+#navigation{
+  background-color: rgb(43, 149, 254) !important;
 }
 
 ._accordian_padding{
@@ -13,3 +16,50 @@
   color:green;
   font-weight: bold;
 }
+
+th{
+  background-color: rgb(43, 149, 254) !important;
+  color: white !important;
+}
+.accordion-button{
+  background-color: rgb(192, 223, 255) !important;
+  color: rgb(8, 98, 188) !important;
+  font-weight: bold !important;
+  font-size: 0.7em !important;
+}
+.btn-size{
+  font-size: 1.3em !important;
+}
+.footer {
+  background-color: rgb(43, 149, 254);
+  color: #fff;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-section {
+  flex: 1;
+}
+
+.footer-section p {
+  margin: 5px 0;
+  text-align: center;
+}
+
+th{
+  background-color: aqua;
+}
+
+._pad{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+ /* leaflet map CSS start */
+.leaflet-container{
+  height: 50vh;
+}
+ /* leaflet map CSS end */

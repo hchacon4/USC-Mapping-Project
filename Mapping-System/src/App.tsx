@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { useState } from "react";
-import { Card, Form, Pagination, Table } from "react-bootstrap";
+import MapComponent from "./Map";
+import { Button, Card, Table } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -10,24 +10,28 @@ import Row from "react-bootstrap/Row";
 export default function App() {
   return (
     <div>
-      <Nav /> {/* Call the nav function here */}
-      <div className="_accordian_padding"></div>
-      <Summary />
-      <div className="_accordian_padding"></div>
-      <Building_Land_Characteristics />
-      <div className="_accordian_padding"></div>
-      <Event_History />
-      <div className="_accordian_padding"></div>
-      <Assessment_History />
+      <Nav />
+      <div className="_pad">
+        <div className="_accordian_padding"></div>
+        <Summary />
+        <div className="_accordian_padding"></div>
+        <Building_Land_Characteristics />
+        <div className="_accordian_padding"></div>
+        <Event_History />
+        <div className="_accordian_padding"></div>
+        <Assessment_History />
+        <div className="_accordian_padding"></div>
+      </div>
+      <Footer />
     </div>
   );
 }
 
 function Nav() {
   return (
-    <div id="navigation" className="row text-bg-primary p-3">
+    <div className="row text-bg-primary">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+        <div id="navigation" className="container-fluid">
           <a className="navbar-brand" href="#">
             <img
               src="src/img/la_county_img.png"
@@ -91,7 +95,6 @@ function Nav() {
     </div>
   );
 }
-
 function Summary() {
   return (
     <Accordion defaultActiveKey="0">
@@ -158,179 +161,203 @@ function Summary_layer1() {
 //layer 2 of summary section (Table 1 and Clickable map)
 function Summary_layer2() {
   return (
-    <div className="row">
-      <div className="table-responsive col-9">
-        <Table bordered>
-          <thead>
-            <tr>
-              <th colSpan={6}>Building (0101) & Land Overview</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <strong>Use Code:</strong>
-              </td>
-              <td>010D</td>
-              <td>
-                <strong># of Units</strong>
-              </td>
-              <td>010D</td>
-              <td>
-                <strong>Year Built:</strong>
-              </td>
-              <td>010D</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Design Type:</strong>
-              </td>
-              <td>1234</td>
-              <td>
-                <strong>Beds/Baths:</strong>
-              </td>
-              <td>1234</td>
-              <td>
-                <strong>Effective Year:</strong>
-              </td>
-              <td>1234</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Quality Class:</strong>
-              </td>
-              <td>1234</td>
-              <td>
-                <strong>Building SqFt:</strong>
-              </td>
-              <td>1234</td>
-              <td>
-                <strong>Land SqFt</strong>
-              </td>
-              <td>1234</td>
-            </tr>
-          </tbody>
-        </Table>
+    <>
+      <br />
+      <div className="row">
+        <div className="table-responsive col-9 blue-header-accordion">
+          <Table bordered>
+            <thead>
+              <tr>
+                <th colSpan={6}>Building (0101) & Land Overview</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Use Code:</strong>
+                </td>
+                <td>010D</td>
+                <td>
+                  <strong># of Units</strong>
+                </td>
+                <td>010D</td>
+                <td>
+                  <strong>Year Built:</strong>
+                </td>
+                <td>010D</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Design Type:</strong>
+                </td>
+                <td>1234</td>
+                <td>
+                  <strong>Beds/Baths:</strong>
+                </td>
+                <td>1234</td>
+                <td>
+                  <strong>Effective Year:</strong>
+                </td>
+                <td>1234</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Quality Class:</strong>
+                </td>
+                <td>1234</td>
+                <td>
+                  <strong>Building SqFt:</strong>
+                </td>
+                <td>1234</td>
+                <td>
+                  <strong>Land SqFt</strong>
+                </td>
+                <td>1234</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        <div className="col-3">
+          <Container>
+            <Row>
+              <Col xs={7} md={7} lg={7}>
+                <a href="your-link-url">
+                  <Image src="src/img/map_image.png" thumbnail />
+                </a>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
-      <div className="col-3">
-        <Container>
-          <Row>
-            <Col xs={6} md={4} lg={10}>
-              <a href="your-link-url">
-                <Image src="src/img/map_image.png" thumbnail />
-              </a>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </div>
+    </>
   );
 }
 
 //layer 3 of summary section (Table 2)
 function Summary_layer3() {
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th colSpan={3}>2024 Roll Preparation</th>
-          <th colSpan={2}>2023 Current Roll</th>
-          <th>RC</th>
-          <th>YEAR</th>
-          <th colSpan={2}>2020 Base Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <strong>Land:</strong>
-          </td>
-          <td>$</td>
-          <td>398,750</td>
-          <td>$</td>
-          <td>398,750</td>
-          <td>T</td>
-          <td>2000</td>
-          <td>$</td>
-          <td>371,900</td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Improvements</strong>
-          </td>
-          <td>$</td>
-          <td>398,750</td>
-          <td>$</td>
-          <td>398,750</td>
-          <td>T</td>
-          <td>2000</td>
-          <td>$</td>
-          <td>371,900</td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Total</strong>
-          </td>
-          <td>$</td>
-          <td>398,750</td>
-          <td>$</td>
-          <td>398,750</td>
-          <td></td>
-          <td></td>
-          <td>$</td>
-          <td>371,900</td>
-        </tr>
-      </tbody>
-    </Table>
+    <>
+      <br />
+      <Table>
+        <thead>
+          <tr>
+            <th colSpan={3}>2024 Roll Preparation</th>
+            <th colSpan={2}>2023 Current Roll</th>
+            <th>RC</th>
+            <th>YEAR</th>
+            <th colSpan={2}>2020 Base Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Land:</strong>
+            </td>
+            <td>$</td>
+            <td>398,750</td>
+            <td>$</td>
+            <td>398,750</td>
+            <td>T</td>
+            <td>2000</td>
+            <td>$</td>
+            <td>371,900</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Improvements</strong>
+            </td>
+            <td>$</td>
+            <td>398,750</td>
+            <td>$</td>
+            <td>398,750</td>
+            <td>T</td>
+            <td>2000</td>
+            <td>$</td>
+            <td>371,900</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Total</strong>
+            </td>
+            <td>$</td>
+            <td>398,750</td>
+            <td>$</td>
+            <td>398,750</td>
+            <td></td>
+            <td></td>
+            <td>$</td>
+            <td>371,900</td>
+          </tr>
+        </tbody>
+      </Table>
+    </>
   );
 }
 
 //layer 4 of summary section (Table 3 as Extra Information)
 function Summary_layer4() {
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th colSpan={6}>Assessor's Responsible Division</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <strong>District:</strong>
-          </td>
-          <td>East District Office</td>
-          <td>
-            <a href="">East District Officea</a>
-          </td>
-          <td>Phone: (626) 258-6001</td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Region:</strong>
-          </td>
-          <td>06</td>
-          <td>1190 Durfee Ave.</td>
-          <td>Toll Free: 1 (888) 807-2111</td>
-        </tr>
-        <tr>
-          <td>
-            <strong>District:</strong>
-          </td>
-          <td>06146 W. COVINA HILLS</td>
-          <td>South El Monte, CA 91733</td>
-          <td>M-F 7:30 am to 5:00 pm</td>
-        </tr>
-      </tbody>
-    </Table>
+    <>
+      <br />
+      <Table>
+        <thead>
+          <tr>
+            <th colSpan={6}>Assessor's Responsible Division</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>District:</strong>
+            </td>
+            <td>East District Office</td>
+            <td>
+              <a href="">East District Officea</a>
+            </td>
+            <td>Phone: (626) 258-6001</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Region:</strong>
+            </td>
+            <td>06</td>
+            <td>1190 Durfee Ave.</td>
+            <td>Toll Free: 1 (888) 807-2111</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>District:</strong>
+            </td>
+            <td>06146 W. COVINA HILLS</td>
+            <td>South El Monte, CA 91733</td>
+            <td>M-F 7:30 am to 5:00 pm</td>
+          </tr>
+        </tbody>
+      </Table>
+    </>
   );
 }
 
 //layer 5 of summary section (Mapping API)
 function Summary_layer5() {
   return (
-    <h2 className="text-center">=====THIS IS WHERE THE MAP API WILL GO=====</h2>
+    <>
+      <div>
+        <MapComponent />
+      </div>
+      {/* <div className="btn-size">
+        <Button className="btn-size" variant="dark" size="lg">
+          +
+        </Button>
+        <Button className="btn-size" variant="dark" size="lg">
+          -
+        </Button>
+      </div> */}
+    </>
   );
+  //before we hit the return statement do the map API processing, store JSON in string
+  // and output JSON
+  // i may need to include the backend file Neil made
 }
 
 function Building_Land_Characteristics() {
@@ -346,7 +373,7 @@ function Building_Land_Characteristics() {
           <BAC_layer4 />
           <BAC_layer5 />
           <BAC_layer6 />
-          <BAC_layer7 />
+          {/* <BAC_layer7 /> */}
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
@@ -363,7 +390,7 @@ function BAC_layer1() {
       <Table>
         <thead>
           <tr>
-            <th colSpan={3}>Use Code = 010D (Single Family Residence)</th>
+            <th colSpan={9}>Use Code = 010D (Single Family Residence)</th>
           </tr>
         </thead>
         <tbody>
@@ -632,218 +659,111 @@ function BAC_layer6() {
   );
 }
 
-function BAC_layer7() {
-  return (
-    <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>
-          {" "}
-          Quality Class: Defines the Construction Type, Quality Range, and Shape
-          Class. For Example: D7.5C (Construction Type = 'D', Quality Range =
-          '7.5', Shape Class='C')
-        </Accordion.Header>
-        <Accordion.Body>
-          <p>
-            The Quality Class is used to estimate construction costs and as a
-            unit of comparison in relation to surrounding properties.
-          </p>
-          <p>
-            Construction Type (A, B, C, D, or S):
-            <ul>
-              <li>Class A: Fireproof construction - structural steel frame.</li>
-              <li>
-                Class B: Fireproof construction - reinforced concrete frame.
-              </li>
-              <li>
-                Class C: Fire-resistant construction - masonry walls,
-                combustible roof and interior.
-              </li>
-              <li>
-                Class D: Non-fireproof construction - usually wood frame (Note:
-                Class D Single Family Residence Construction predominates in Los
-                Angeles County).
-              </li>
-              <li>
-                Class S: Specialized buildings that do not fit in any of the
-                above categories (typically regarding Commercial/Industrial
-                properties).
-              </li>
-            </ul>
-          </p>
-          <p>
-            Quality Range (1.0 to 14.5 or 'X' ):
-            <ul>
-              <li>
-                The quality class concept is a function of all construction
-                features, depending upon quality of materials, construction
-                methods, and workmanship. It considers specifications for
-                foundation, structure, roof, floor, interior, exterior, heating
-                & cooling, plumbing, kitchen, and bathrooms. 1.0 = lowest
-                quality.
-              </li>
-              <li>
-                Note: Quality of 5.5 meets the current minimum standards for new
-                construction in most municipalities. Quality of 9.0 or greater
-                is referencing high end or specialty construction and/or
-                materials.
-              </li>
-              <li>
-                'X' Quality: Unique or unusual construction that does not lend
-                itself to being classified using the standard classification
-                system.
-              </li>
-            </ul>
-          </p>
-          <p>
-            Shape Class (A, B, C, D):
-            <ul>
-              <li>
-                The shape class is based on the building's perimeter in relation
-                to the total square footage.
-              </li>
-              <li>
-                A structure with a relatively large perimeter in relation to its
-                square footage (many angles, turns, a 'cut-up' custom shape,
-                etc.) typically costs more to construct than a simple
-                square/rectangle structure.
-              </li>
-              <li>
-                Shape A represents a relatively square/rectangle structure. It
-                has a relatively small perimeter compared to its total square
-                footage.
-              </li>
-              <li>
-                Shape D represents a structure with many angles, turns, etc. (a
-                'cut-up' custom shape). It has a relatively large perimeter
-                compared to its total square footage.
-              </li>
-              <li>
-                A structure with a 'DX' Construction Type and Quality Range will
-                usually not have a Shape Class.
-              </li>
-            </ul>
-          </p>
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-  );
-}
+// function BAC_layer7() {
+//   return (
+//     <Accordion defaultActiveKey="0">
+//       <Accordion.Item eventKey="0">
+//         <Accordion.Header>
+//           {" "}
+//           Quality Class: Defines the Construction Type, Quality Range, and Shape
+//           Class. For Example: D7.5C (Construction Type = 'D', Quality Range =
+//           '7.5', Shape Class='C')
+//         </Accordion.Header>
+//         <Accordion.Body>
+//           <p>
+//             The Quality Class is used to estimate construction costs and as a
+//             unit of comparison in relation to surrounding properties.
+//           </p>
+//           <p>
+//             Construction Type (A, B, C, D, or S):
+//             <ul>
+//               <li>Class A: Fireproof construction - structural steel frame.</li>
+//               <li>
+//                 Class B: Fireproof construction - reinforced concrete frame.
+//               </li>
+//               <li>
+//                 Class C: Fire-resistant construction - masonry walls,
+//                 combustible roof and interior.
+//               </li>
+//               <li>
+//                 Class D: Non-fireproof construction - usually wood frame (Note:
+//                 Class D Single Family Residence Construction predominates in Los
+//                 Angeles County).
+//               </li>
+//               <li>
+//                 Class S: Specialized buildings that do not fit in any of the
+//                 above categories (typically regarding Commercial/Industrial
+//                 properties).
+//               </li>
+//             </ul>
+//           </p>
+//           <p>
+//             Quality Range (1.0 to 14.5 or 'X' ):
+//             <ul>
+//               <li>
+//                 The quality class concept is a function of all construction
+//                 features, depending upon quality of materials, construction
+//                 methods, and workmanship. It considers specifications for
+//                 foundation, structure, roof, floor, interior, exterior, heating
+//                 & cooling, plumbing, kitchen, and bathrooms. 1.0 = lowest
+//                 quality.
+//               </li>
+//               <li>
+//                 Note: Quality of 5.5 meets the current minimum standards for new
+//                 construction in most municipalities. Quality of 9.0 or greater
+//                 is referencing high end or specialty construction and/or
+//                 materials.
+//               </li>
+//               <li>
+//                 'X' Quality: Unique or unusual construction that does not lend
+//                 itself to being classified using the standard classification
+//                 system.
+//               </li>
+//             </ul>
+//           </p>
+//           <p>
+//             Shape Class (A, B, C, D):
+//             <ul>
+//               <li>
+//                 The shape class is based on the building's perimeter in relation
+//                 to the total square footage.
+//               </li>
+//               <li>
+//                 A structure with a relatively large perimeter in relation to its
+//                 square footage (many angles, turns, a 'cut-up' custom shape,
+//                 etc.) typically costs more to construct than a simple
+//                 square/rectangle structure.
+//               </li>
+//               <li>
+//                 Shape A represents a relatively square/rectangle structure. It
+//                 has a relatively small perimeter compared to its total square
+//                 footage.
+//               </li>
+//               <li>
+//                 Shape D represents a structure with many angles, turns, etc. (a
+//                 'cut-up' custom shape). It has a relatively large perimeter
+//                 compared to its total square footage.
+//               </li>
+//               <li>
+//                 A structure with a 'DX' Construction Type and Quality Range will
+//                 usually not have a Shape Class.
+//               </li>
+//             </ul>
+//           </p>
+//         </Accordion.Body>
+//       </Accordion.Item>
+//     </Accordion>
+//   );
+// }
 
 function Event_History() {
   return (
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
         <Accordion.Header>Event History</Accordion.Header>
-        <Accordion.Body>
-          <ExpandableTable />
-        </Accordion.Body>
+        <Accordion.Body></Accordion.Body>
       </Accordion.Item>
     </Accordion>
-  );
-}
-
-function ExpandableTable() {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [expandedRows, setExpandedRows] = useState<number[]>([]);
-
-  const totalRows: number = 6; // Total number of rows
-  const rowsPerPage: number = 3; // Number of rows per page
-  const totalPages: number = Math.ceil(totalRows / rowsPerPage);
-
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const handleRowClick = (rowIndex: number) => {
-    // Toggle the expanded state of the clicked row
-    if (expandedRows.includes(rowIndex)) {
-      setExpandedRows(expandedRows.filter((row) => row !== rowIndex));
-    } else {
-      setExpandedRows([...expandedRows, rowIndex]);
-    }
-  };
-
-  return (
-    <>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 4</th>
-            <th>Column 5</th>
-            <th>Column 6</th>
-            <th>Column 7</th>
-            <th>Column 8</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[1, 2, 3]
-            .slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
-            .map((rowIndex) => (
-              <React.Fragment key={rowIndex}>
-                <tr onClick={() => handleRowClick(rowIndex)}>
-                  <td>{rowIndex}</td>
-                  <td>Data {rowIndex * 8 - 7}</td>
-                  <td>Data {rowIndex * 8 - 6}</td>
-                  <td>Data {rowIndex * 8 - 5}</td>
-                  <td>Data {rowIndex * 8 - 4}</td>
-                  <td>Data {rowIndex * 8 - 3}</td>
-                  <td>Data {rowIndex * 8 - 2}</td>
-                  <td>Data {rowIndex * 8 - 1}</td>
-                  <td>Data {rowIndex * 8}</td>
-                </tr>
-                {expandedRows.includes(rowIndex) && (
-                  <tr>
-                    <td colSpan={9}>
-                      <Table striped bordered hover>
-                        <thead>
-                          <tr>
-                            <th>Additional Column 1</th>
-                            <th>Additional Column 2</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((subRowIndex) => (
-                            <tr key={subRowIndex}>
-                              <td>Additional Data {subRowIndex * 2 - 1}</td>
-                              <td>Additional Data {subRowIndex * 2}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </Table>
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
-            ))}
-        </tbody>
-      </Table>
-      <Pagination>
-        <Pagination.Prev
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        />
-        <Pagination.Item
-          active={currentPage === 1}
-          onClick={() => handlePageChange(1)}
-        >
-          1
-        </Pagination.Item>
-        <Pagination.Item
-          active={currentPage === 2}
-          onClick={() => handlePageChange(2)}
-        >
-          2
-        </Pagination.Item>
-        <Pagination.Next
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        />
-      </Pagination>
-    </>
   );
 }
 
@@ -852,16 +772,23 @@ function Assessment_History() {
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
         <Accordion.Header>Assessment History</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
+        <Accordion.Body></Accordion.Body>
       </Accordion.Item>
     </Accordion>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer p-3">
+      <Container fluid>
+        <div className="footer-content">
+          <div className="footer-section">
+            <p>PDB Effective Date: 01/16/2024</p>
+            <p>Contact Us Disclaimer FAQ</p>
+          </div>
+        </div>
+      </Container>
+    </footer>
   );
 }
