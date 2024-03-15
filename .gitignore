@@ -3,3 +3,4 @@ API/bin/
 .DS_Store
 deploy_test/obj/
 Mapping-System/yarn.lock
+package-lock.json
