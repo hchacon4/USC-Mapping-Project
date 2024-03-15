@@ -18,13 +18,19 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
+
       # Added `npm install` to create package-lock.json file.
-      - run: cd Mapping-System
-      - run: npm install
-      # end Added
       # npm ci requires package-lock.json file to exist.
-      - run: npm ci
-      - run: npm publish
-      - run: cd ..
+      - run: |
+          cd Mapping-System
+          ls
+          npm install
+          ls
+          npm ci
+          npm run buildLib
+          npm publish
+          cd ..
+        # end Added
+
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
