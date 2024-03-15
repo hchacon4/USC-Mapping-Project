@@ -6,11 +6,12 @@
   "name": "usc401s24_react",
   "description": "LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.",
   "version": "1.0.4",
-  "main": "Mapping-System/src/App.tsx",
+  "main": "Mapping-System/dist/lib",
   "devDependencies": {
     "typescript": "^5.4.2"
   },
   "scripts": {
+    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -18,7 +18,7 @@ export default defineConfig({
         }
       }
     },
-    outDir: "dist/lib"
+    outDir: "dist"
   },
   plugins: [react()],
 })
