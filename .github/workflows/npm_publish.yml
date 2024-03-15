@@ -22,14 +22,21 @@ jobs:
       - run: cat .github/workflows/npm_publish.yml
       - run: cat Mapping-System/package.json
       - run: ls
-      - run: cd Mapping-System
-      - run: ls
-      - run: npm install
-      - run: ls
+      - run: |
+          cd Mapping-System
+          ls
+          npm install
+          ls
+          npm ci
+          npm publish
+          cd ..
+      # - run: ls
+      # - run: npm install
+      # - run: ls
       # end Added
       # npm ci requires package-lock.json file to exist.
-      - run: npm ci
-      - run: npm publish
-      - run: cd ..
+      # - run: npm ci
+      # - run: npm publish
+      # - run: cd ..
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
