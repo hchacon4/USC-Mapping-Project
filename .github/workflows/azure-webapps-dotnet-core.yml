@@ -51,7 +51,7 @@ jobs:
           cd Mapping-System
           npm install
           # npm run build
-          npm run buildOnly
+          npm run buildApp
           cd ..
 
       # - name: Upload node artifact for deployment job
