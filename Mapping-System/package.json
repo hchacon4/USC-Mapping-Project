@@ -1,15 +1,29 @@
 {
-  "name": "mapping-system",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "usc401s24_mapping-system",
+  "description": "LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.",
+  "version": "1.0.4",
+  "main": "./dist/lib/usc401s24_mapping-system.umd.js",
+  "module": "./dist/lib/usc401s24_mapping-system.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/lib/usc401s24_mapping-system.es.js",
+      "require": "./dist/lib/usc401s24_mapping-system.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && vite build -c vite1.config.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "buildOnly": "vite build"
+    "buildOnly": "vite build",
+    "buildLib": "tsc && vite build -c vite1.config.ts",
+    "buildApp": "tsc && vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "README.md",
+    "dist"
+  ],
   "dependencies": {
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
@@ -17,6 +31,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/node": "^20.11.27",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
@@ -26,6 +41,16 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
-  }
+    "vite": "^5.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hchacon4/USC-Mapping-Project.git"
+  },
+  "author": "USC CSCI401-Spring2024 Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hchacon4/USC-Mapping-Project/issues"
+  },
+  "homepage": "https://github.com/hchacon4/USC-Mapping-Project#readme"
 }

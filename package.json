@@ -3,11 +3,13 @@
     "bootstrap": "^5.3.2",
     "react-bootstrap": "^2.10.0"
   },
-  "name": "usc401s24_deploy",
+  "name": "usc401s24_react",
   "description": "LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.",
-  "version": "1.0.3",
-  "main": "API/wwwroot/js/site.js",
-  "devDependencies": {},
+  "version": "1.0.4",
+  "main": "Mapping-System/src/App.tsx",
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/hchacon4/USC-Mapping-Project/issues"
   },
-  "homepage": "https://github.com/hchacon4/USC-Mapping-Project#readme"
+  "homepage": "https://github.com/hchacon4/USC-Mapping-Project#readme",
+  "type": "module"
 }
