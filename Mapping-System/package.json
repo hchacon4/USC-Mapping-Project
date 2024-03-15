@@ -1,7 +1,7 @@
 {
   "name": "usc401s24_mapping-system",
   "description": "LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./dist/lib/usc401s24_mapping-system.umd.js",
   "module": "./dist/lib/usc401s24_mapping-system.es.js",
   "exports": {
