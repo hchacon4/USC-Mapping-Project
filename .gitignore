@@ -1,6 +1,9 @@
 node_modules/
 API/bin/
 .DS_Store
-deploy_test/obj/
-Mapping-System/yarn.lock
 package-lock.json
+
+deploy_test/obj/
+
+Mapping-System/yarn.lock
+Mapping-System/package-lock.json
