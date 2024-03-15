@@ -1,4 +1,4 @@
-node_modules
+node_modules/
 API/bin/
 .DS_Store
 deploy_test/obj/

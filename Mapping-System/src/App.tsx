@@ -1,16 +1,24 @@
+// JSX allows html to be included in js/ts file. No need to tab between files.
 import "./App.css";
-import React, { useState } from "react";
-import { Card, Form, Pagination, Table } from "react-bootstrap";
+import mapImg from './img/map_image.png';
+import laCountyImg from './img/la_county_img.png';
+import * as React from "react";   // React used in Event_History
+import { useState } from "react";
+// import { Card, Form, Pagination, Table } from "react-bootstrap";
+// import { Table } from "react-bootstrap";         // Summary_layer2
+// import { Card, Table } from "react-bootstrap";  // Card needed for BAC_layer3
+import { Card, Pagination, Table } from "react-bootstrap";  // Pagination is needed for Event_History
 import Accordion from "react-bootstrap/Accordion";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";              // Summary_layer2
+import Container from "react-bootstrap/Container";  // Summary_layer2
+import Image from "react-bootstrap/Image";          // Summary_layer2
+import Row from "react-bootstrap/Row";              // Summary_layer2
 
-export default function App() {
+export default function App() {  // `export default` makes App() the default export for this package.
+                                 //   This means that App() can be imported using any alias.
   return (
     <div>
-      <Nav /> {/* Call the nav function here */}
+      <Nav /> {/*Call the nav function here*/}
       <div className="_accordian_padding"></div>
       <Summary />
       <div className="_accordian_padding"></div>
@@ -23,14 +31,15 @@ export default function App() {
   );
 }
 
-function Nav() {
+// In TypeScript (and JavaScript) non-default exports must be part of the func declaration.
+export function Nav() {
   return (
     <div id="navigation" className="row text-bg-primary p-3">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             <img
-              src="src/img/la_county_img.png"
+              src={laCountyImg}
               alt="Logo"
               width="30"
               height="24"
@@ -92,7 +101,7 @@ function Nav() {
   );
 }
 
-function Summary() {
+export function Summary() {
   return (
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
@@ -217,7 +226,7 @@ function Summary_layer2() {
           <Row>
             <Col xs={6} md={4} lg={10}>
               <a href="your-link-url">
-                <Image src="src/img/map_image.png" thumbnail />
+                <Image src={mapImg} thumbnail />
               </a>
             </Col>
           </Row>
