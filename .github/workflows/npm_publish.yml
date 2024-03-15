@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
+        # with:
+        #   ref: main
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
@@ -21,7 +21,9 @@ jobs:
       # Added `npm install` to create package-lock.json file.
       - run: cat .github/workflows/npm_publish.yml
       - run: cat Mapping-System/package.json
+      - run: ls
       - run: cd Mapping-System
+      - run: ls
       - run: npm install
       - run: ls
       # end Added
