@@ -1,45 +1,110 @@
+// JSX allows html to be included in js/ts file. No need to tab between files.
 import "./App.css";
 import MapComponent from "./Map";
 import { Button, Card, Table } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col"; // Summary_layer2
+import Container from "react-bootstrap/Container"; // Summary_layer2
+import Image from "react-bootstrap/Image"; // Summary_layer2
+import Row from "react-bootstrap/Row"; // Summary_layer2
+import * as EL from "esri-leaflet";
+import { Control } from "leaflet";
+
+import "leaflet/dist/leaflet.css";
+// import VectorTileLayer from "react-leaflet-vector-tile-layer";
+
+import {useRef, useState} from 'react';
+import { MapContainer,LayersControl} from 'react-leaflet';
+import VectorTileLayer from 'react-esri-leaflet/plugins/VectorTileLayer';
+interface LayersProps  {
+  setLayersControlRef: React.Dispatch<React.SetStateAction<Control.Layers>>;
+}
+export const Layers: React.FC<LayersProps> = ({
+  setLayersControlRef,
+}: LayersProps) => {
+  /** Ref to the leaflet Layers.Control control component */
+  const layerControlRef = useRef<Control.Layers>();
+
+  /**
+   * Following list of refs shows how to properly type ref values in typescript
+   */
+
+  /**
+   * The following plugins don't have TS definitions publicly available, so you're on your own!
+   */
+  const vectorBasemapLayerRef = useRef();
+  const vectorTileLayerRef = useRef();
+  const clusterLayerRef = useRef();
+  const heatmapLayerRef = useRef();
+
+
+  // @ts-expect-error No TS defs available
+  vectorBasemapLayerRef.current?.once("add", () => {
+    console.log(`%c <VectorBasemapLayer /> added:`, "font-weight: bold");
+    console.log(vectorBasemapLayerRef.current);
+  });
+  // @ts-expect-error No TS defs available
+  vectorTileLayerRef.current?.once("add", () => {
+    console.log(`%c <VectorTileLayer /> added:`, "font-weight: bold");
+    console.log(vectorTileLayerRef.current);
+  });
+  // @ts-expect-error No TS defs available
+  clusterLayerRef.current?.once("add", () => {
+    console.log(`%c <ClusterLayer /> added:`, "font-weight: bold");
+    console.log(clusterLayerRef.current);
+  });
+  // @ts-expect-error No TS defs available
+  heatmapLayerRef.current?.once("add", () => {
+    console.log(`%c <HeatmapLayer /> added:`, "font-weight: bold");
+    console.log(heatmapLayerRef.current);
+  });
+
+  return (
+    <LayersControl
+      position="topleft"
+      collapsed={false}
+      ref={(ref) => {
+        // @ts-ignore refs are hard sometimes
+        layerControlRef.current = ref;
+        setLayersControlRef(layerControlRef.current);
+      }}
+    >
+
+      <LayersControl.Overlay name="Vector Tile Layer">
+        <VectorTileLayer ref={vectorTileLayerRef} url={"https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"} />
+      </LayersControl.Overlay>
+    </LayersControl>
+  );
+};
+
 
 export default function App() {
+  // `export default` makes App() the default export for this package.
+  //   This means that App() can be imported using any alias.
+  const [layersControlRef, setLayersControlRef] = useState<Control.Layers|null>();
   return (
-    <div>
-      <Nav />
-      <div className="_pad">
-        <div className="_accordian_padding"></div>
-        <Summary />
-        <div className="_accordian_padding"></div>
-        <Building_Land_Characteristics />
-        <div className="_accordian_padding"></div>
-        <Event_History />
-        <div className="_accordian_padding"></div>
-        <Assessment_History />
-        <div className="_accordian_padding"></div>
-      </div>
-      <Footer />
-    </div>
+    <MapContainer         id="mapId"
+    zoom={11}
+    center={{ lat: 33.97180352632852, lng: -118.43073695898059 }}>
+    <Layers  setLayersControlRef={setLayersControlRef} />
+    </MapContainer>
   );
 }
 
-function Nav() {
+// In TypeScript (and JavaScript) non-default exports must be part of the func declaration.
+export function Nav() {
   return (
     <div className="row text-bg-primary">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div id="navigation" className="container-fluid">
           <a className="navbar-brand" href="#">
-            <img
-              src="src/img/la_county_img.png"
+            {/* <img
+              src={laCountyImg}
               alt="Logo"
               width="30"
               height="24"
               className="d-inline-block align-text-top"
-            />
+            /> */}
             Los Angeles County Assessor Portal
           </a>
           <button

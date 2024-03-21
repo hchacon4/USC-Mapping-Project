@@ -51,7 +51,7 @@ jobs:
           cd Mapping-System
           npm install
           # npm run build
-          npm run buildOnly
+          npm run buildApp
           cd ..
 
       # - name: Upload node artifact for deployment job
@@ -84,7 +84,7 @@ jobs:
       - name: Copy React build output to .NET Core publish directory
         run: |
           ls Mapping-System/dist
-          cp -a Mapping-System/dist/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
+          cp -a Mapping-System/dist/app/. ${{env.DOTNET_ROOT}}/myapp/wwwroot
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3

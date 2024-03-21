@@ -1,40 +1,68 @@
-import { useState, useEffect } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
-import vectorTileLayer from "leaflet-vector-tile-layer";
-import "leaflet/dist/leaflet.css";
+import React from "react";
+import { MapContainer, useMapEvents } from "react-leaflet";
+import { Control } from "leaflet";
 
-const MapComponent = () => {
-  const [mapData, setMapData] = useState(null);
+// import {
+// 	BasemapLayer,
+// 	FeatureLayer,
+// 	DynamicMapLayer,
+// 	TiledMapLayer,
+// 	ImageMapLayer,
+// } from 'react-esri-leaflet';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"
-        );
-        const data = await response.json();
-        console.log(data);
-        setMapData(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
+// import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
+// import HeatmapLayer from 'react-esri-leaflet/plugins/HeatmapLayer';
+// import ClusterLayer from 'react-esri-leaflet/plugins/ClusterLayer';
+// import VectorBasemapLayer from 'react-esri-leaflet/plugins/VectorBasemapLayer';
+// import VectorTileLayer from 'react-esri-leaflet/plugins/VectorTileLayer';
 
-    fetchData();
-  }, []);
+// Alternative imports for local build tests:
+// import React, { useState } from "react";
+// import { Control } from "leaflet";
+
+// import {
+//   MapContainer,
+//   useMapEvents,
+// } from "../../../node_modules/react-leaflet";
+
+
+import { GeoSearch, Layers } from "./MapComponents";
+import { useState } from "react";
+
+/**
+ * Convenience component to track events on map
+ */
+const MapEvents = () => {
+  const map = useMapEvents({
+    click: (e) => console.log(e.latlng, map.getZoom()),
+  });
+  return null;
+};
+
+/**
+ * Central map component of react-esri-leaflet example
+ */
+const Map = ({  }) => {
+  /**
+   * Create ref as state variable.  Once ready, we use a react portal to inject `See Code` markup
+   */
+  const [layersControlRef, setLayersControlRef] = useState<Control.Layers|null>();
 
   return (
-    <div style={{ height: "500px" }}>
-      {mapData && (
-        <MapContainer center={[34.0522, -118.2437]} zoom={10}>
-          <TileLayer
-            url="https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer/tile/{z}/{y}/{x}.pbf"
-            // attribution='&copy; <a href="https://www.arcgis.com/home/item.html?id=3ae8e8e9e1aa4096aecc78b8137f4c1b">ArcGIS</a>'
-          />
-        </MapContainer>
-      )}
-    </div>
+    <>
+      <MapContainer
+        id="mapId"
+        zoom={11}
+        center={{ lat: 33.97180352632852, lng: -118.43073695898059 }}
+      >
+        <MapEvents />
+        <Layers setLayersControlRef={setLayersControlRef} />
+
+      </MapContainer>
+
+
+    </>
   );
 };
 
-export default MapComponent;
+export default Map;
