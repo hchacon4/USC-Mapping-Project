@@ -7,8 +7,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/lib/index.tsx'),
-      name: 'usc401s24_mapping-system',
-      fileName: (format) => `usc401s24_mapping-system.${format}.js`
+      // entry: path.resolve(__dirname, 'src/App.tsx'),
+      name: 'usc401s24_mapping-components',
+      fileName: (format) => `usc401s24_mapping-components.${format}.js`
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
