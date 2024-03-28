@@ -1,13 +1,13 @@
 {
   "name": "usc401s24_mapping-components",
   "description": "LA Assessor Portal: Build modular Esri/ArcGIS API independent of Assessor endpoints with focus on maintainability and reliability.",
-  "version": "1.0.9",
-  "main": "./dist/lib/usc401s24_mapping-components.umd.js",
-  "module": "./dist/lib/usc401s24_mapping-components.es.js",
+  "version": "1.0.14",
+  "main": "./dist/usc401s24_mapping-components.umd.js",
+  "module": "./dist/usc401s24_mapping-components.es.js",
   "exports": {
     ".": {
-      "import": "./dist/lib/usc401s24_mapping-components.es.js",
-      "require": "./dist/lib/usc401s24_mapping-components.umd.js"
+      "import": "./dist/usc401s24_mapping-components.es.js",
+      "require": "./dist/usc401s24_mapping-components.umd.js"
     }
   },
   "scripts": {
@@ -22,8 +22,8 @@
   },
   "files": [
     "README.md",
-    "dist/usc401s24_mapping-system.es.js",
-    "dist/usc401s24_mapping-system.umd.js"
+    "dist/usc401s24_mapping-components.es.js",
+    "dist/usc401s24_mapping-components.umd.js"
   ],
   "dependencies": {
     "bootstrap": "^5.3.3",
@@ -38,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "dotenv": "^16.4.5",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",

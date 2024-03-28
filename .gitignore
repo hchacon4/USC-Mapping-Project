@@ -7,3 +7,32 @@ deploy_test/obj/
 
 Mapping-System/yarn.lock
 Mapping-System/package-lock.json
+# Important: do not post API keys or URLs to the public repo.
+Mapping-System/src/lib/.env
+
+# Moved here from Mapping-System/.gitignore
+# Logs
+Mapping-System/logs
+Mapping-System/*.log
+Mapping-System/npm-debug.log*
+Mapping-System/yarn-debug.log*
+Mapping-System/yarn-error.log*
+Mapping-System/pnpm-debug.log*
+Mapping-System/lerna-debug.log*
+
+Mapping-System/node_modules
+Mapping-System/dist
+Mapping-System/dist-ssr
+Mapping-System/*.local
+
+# Editor directories and files
+Mapping-System/.vscode/*
+Mapping-System/!.vscode/extensions.json
+Mapping-System/.idea
+Mapping-System/.DS_Store
+Mapping-System/*.suo
+Mapping-System/*.ntvs*
+Mapping-System/*.njsproj
+Mapping-System/*.sln
+Mapping-System/*.sw?
+# end Moved
