@@ -94,7 +94,7 @@ export const Layers: React.FC<LayersProps> = ({
       }}
     >
       <LayersControl.Overlay name="Vector Tile Layer">
-        <VectorTileLayer ref={vectorTileLayerRef} url={"https://vectortileservices3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Santa_Monica_Mountains_Parcels_VTL/VectorTileServer"} />
+        <VectorTileLayer ref={vectorTileLayerRef} url={"https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"}/>
       </LayersControl.Overlay>
     </LayersControl>
   );

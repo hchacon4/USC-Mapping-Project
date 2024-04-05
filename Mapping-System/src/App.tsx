@@ -7,23 +7,24 @@ import Col from "react-bootstrap/Col"; // Summary_layer2
 import Container from "react-bootstrap/Container"; // Summary_layer2
 import Image from "react-bootstrap/Image"; // Summary_layer2
 import Row from "react-bootstrap/Row"; // Summary_layer2
-import * as EL from "esri-leaflet";
 import { Control } from "leaflet";
-
 import "leaflet/dist/leaflet.css";
 // import VectorTileLayer from "react-leaflet-vector-tile-layer";
 
-import {useRef, useState} from 'react';
-import { MapContainer,LayersControl} from 'react-leaflet';
-import VectorTileLayer from 'react-esri-leaflet/plugins/VectorTileLayer';
-interface LayersProps  {
+import { useRef, useState } from "react";
+import { MapContainer, LayersControl } from "react-leaflet";
+import VectorTileLayer from "react-esri-leaflet/plugins/VectorTileLayer";
+import { WMSTileLayer } from 'react-leaflet/WMSTileLayer'
+
+
+interface LayersProps {
   setLayersControlRef: React.Dispatch<React.SetStateAction<Control.Layers>>;
 }
 export const Layers: React.FC<LayersProps> = ({
   setLayersControlRef,
 }: LayersProps) => {
   /** Ref to the leaflet Layers.Control control component */
-  const layerControlRef = useRef<Control.Layers>();
+  const layerControlRef = useRef<Control.Layers | null>();
 
   /**
    * Following list of refs shows how to properly type ref values in typescript
@@ -36,7 +37,6 @@ export const Layers: React.FC<LayersProps> = ({
   const vectorTileLayerRef = useRef();
   const clusterLayerRef = useRef();
   const heatmapLayerRef = useRef();
-
 
   // @ts-expect-error No TS defs available
   vectorBasemapLayerRef.current?.once("add", () => {
@@ -71,22 +71,104 @@ export const Layers: React.FC<LayersProps> = ({
     >
 
       <LayersControl.Overlay name="Vector Tile Layer">
-        <VectorTileLayer ref={vectorTileLayerRef} url={"https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"} />
+        {/* <VectorTileLayer
+          ref={vectorTileLayerRef}
+          url={
+            "https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"
+          }
+        /> */}
+              <WMSTileLayer
+            layers={'PICT-LARIAC5--SxmDvXHvYJ'}
+            url={"https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wms"}
+ // <-- comment out this line to stop the map flickering when the button is pressed
+  maxZoom={18}
+            transparent={true}
+            format='image/png'
+            opacity={0.8}
+            ref={vectorTileLayerRef.current}
+          />
       </LayersControl.Overlay>
+      <LayersControl.Overlay name="Vector Tile Layer2">
+        {/* <VectorTileLayer
+          ref={vectorTileLayerRef}
+          url={
+            "https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"
+          }
+        /> */}
+              <WMSTileLayer
+            layers={'PICT-LARIAC5--u6URKu1Fx3'}
+            url={"https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wms"}
+ // <-- comment out this line to stop the map flickering when the button is pressed
+  maxZoom={18}
+            transparent={true}
+            format='image/png'
+            opacity={0.8}
+            ref={vectorTileLayerRef.current}
+          />
+      </LayersControl.Overlay>
+      <LayersControl.Overlay name="2022 Summer Urban IR Ortho">
+        {/* <VectorTileLayer
+          ref={vectorTileLayerRef}
+          url={
+            "https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"
+          }
+        /> */}
+              <WMSTileLayer
+            layers={'PICT-LARIAC6--LXMv769zxs'}
+            url={"https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wms"}
+ // <-- comment out this line to stop the map flickering when the button is pressed
+  maxZoom={18}
+            transparent={true}
+            format='image/png'
+            opacity={0.8}
+            ref={vectorTileLayerRef.current}
+          />
+      </LayersControl.Overlay>
+      <LayersControl.Overlay name="2021 Spring Urban RGB Ortho">
+        {/* <VectorTileLayer
+          ref={vectorTileLayerRef}
+          url={
+            "https://tiles.arcgis.com/tiles/RmCCgQtiZLDCtblq/arcgis/rest/services/LA_County_Basemap_Source/VectorTileServer"
+          }
+        /> */}
+              <WMSTileLayer
+            layers={'PICT-LARIAC6--pQjhm1WxCC'}
+            url={"https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wms"}
+ // <-- comment out this line to stop the map flickering when the button is pressed
+  maxZoom={18}
+            transparent={true}
+            format='image/png'
+            opacity={0.8}
+            ref={vectorTileLayerRef.current}
+          />
+      </LayersControl.Overlay>                     
     </LayersControl>
   );
 };
-
-
+//https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wmts/PICT-LARIAC5--u6URKu1Fx3/default/GoogleMapsCompatible/8/43/101.png
 export default function App() {
   // `export default` makes App() the default export for this package.
   //   This means that App() can be imported using any alias.
-  const [layersControlRef, setLayersControlRef] = useState<Control.Layers|null>();
+
+  const [layersControlRef, setLayersControlRef] =
+    useState<Control.Layers | null>();
   return (
-    <MapContainer         id="mapId"
-    zoom={11}
-    center={{ lat: 33.97180352632852, lng: -118.43073695898059 }}>
-    <Layers  setLayersControlRef={setLayersControlRef} />
+    <MapContainer
+      id="mapId"
+      zoom={8}
+      center={{ lat: 33, lng: -118 }}
+    >
+
+            <WMSTileLayer
+            layers={'PICT-LARIAC5--u6URKu1Fx3'}
+            url={"https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wms"}
+ // <-- comment out this line to stop the map flickering when the button is pressed
+    maxZoom={12}
+            transparent={true}
+            format='image/png'
+            opacity={0.8}
+          />
+      <Layers setLayersControlRef={setLayersControlRef} /> 
     </MapContainer>
   );
 }
