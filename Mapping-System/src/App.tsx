@@ -11,13 +11,14 @@ import * as EL from "esri-leaflet";
 
 import "leaflet/dist/leaflet.css";
 // import VectorTileLayer from "react-leaflet-vector-tile-layer";
-
+import HeatmapLayer from "react-esri-leaflet/plugins/HeatmapLayer";
 import { useRef, useState } from "react";
 import { MapContainer, LayersControl } from "react-leaflet";
+import ClusterLayer from "react-esri-leaflet/plugins/ClusterLayer";
 import VectorTileLayer from "react-esri-leaflet/plugins/VectorTileLayer";
 import {
   // BasemapLayer,
-  // FeatureLayer,
+  FeatureLayer,
   // DynamicMapLayer,
   TiledMapLayer,
   // ImageMapLayer,
@@ -38,11 +39,13 @@ export const Layers: React.FC<LayersProps> = ({
   /**
    * The following plugins don't have TS definitions publicly available, so you're on your own!
    */
+  
   const tiledMapLayerRef = useRef<EL.TiledMapLayer>();
   const vectorBasemapLayerRef = useRef();
   const vectorTileLayerRef = useRef();
   const clusterLayerRef = useRef();
   const heatmapLayerRef = useRef();
+  const featureLayerRef = useRef<EL.FeatureLayer>();
 
   // @ts-expect-error No TS defs available
   vectorBasemapLayerRef.current?.once("add", () => {
@@ -115,6 +118,16 @@ export const Layers: React.FC<LayersProps> = ({
           }
         />
       </LayersControl.BaseLayer>
+      <LayersControl.Overlay name="Clusters Service">
+        <ClusterLayer 
+        ref={clusterLayerRef} 
+        url={"https://assessor.gis.lacounty.gov/oota/rest/services/MAPPING/Clusters_SFR_AMP/MapServer/5"} />
+      </LayersControl.Overlay>
+      <LayersControl.Overlay name="School District Service">
+        <ClusterLayer 
+        ref={clusterLayerRef} 
+        url={"https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic/Political_Boundaries/MapServer/25"} />
+      </LayersControl.Overlay>
     </LayersControl>
   );
 };
