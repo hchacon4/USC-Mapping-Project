@@ -41,6 +41,48 @@ public class EsriBackendController : ControllerBase
         return await GetLayerData("https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic");
     }
 
+      [HttpGet("GetFieldBooks")]
+    public async Task<IActionResult> GetFieldBooks()
+    {
+        return await GetLayerData("https://assessor.gis.lacounty.gov/oota/rest/services/MAPPING/FieldBooks_AMP/MapServer");
+    }
+
+    [HttpGet("GetClusters")]
+    public async Task<IActionResult> GetClusters()
+    {
+        return await GetLayerData("https://assessor.gis.lacounty.gov/oota/rest/services/MAPPING/Clusters_SFR_AMP/MapServer/5");
+    }
+
+    [HttpGet("GetRecentSales")]
+    public async Task<IActionResult> GetRecentSales()
+    {
+        return await GetLayerData("https://assessor.gis.lacounty.gov/oota/rest/services/PAIS/pais_sales_parcels/MapServer");
+    }
+
+    [HttpGet("GetSchoolDistrict")]
+    public async Task<IActionResult> GetSchoolDistrict()
+    {
+        return await GetLayerData("https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic/Political_Boundaries/MapServer/25");
+    }
+
+    [HttpGet("GetPLSSMap")]
+    public async Task<IActionResult> GetPLSSMap()
+    {
+        return await GetLayerData("https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer");
+    }
+
+    [HttpGet("GetWmsData")]
+    public IActionResult GetWmsData()
+    {
+        var wmsData = new
+        {
+            url = "https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wms",
+            layer = "=LayerString"
+        };
+
+        return Ok(wmsData);
+    }
+
     private async Task<IActionResult> GetLayerData(string baseUrl)
     {
         try
@@ -61,8 +103,13 @@ public class EsriBackendController : ControllerBase
     }
 }
 
-
 //Base Map: http://localhost:5053/EsriBackend/GetBaseMap
 //2014 High-Res Imagery: http://localhost:5053/EsriBackend/GetHighResImagery2014
 //Map Cache Layers: http://localhost:5053/EsriBackend/GetMapCacheLayers
 //Dynamic Layers: http://localhost:5053/EsriBackend/GetDynamicLayers
+//Field Books: http://localhost:5053/EsriBackend/GetFieldBooks
+//Clusters: http://localhost:5053/EsriBackend/GetClusters
+//Recent Sales: http://localhost:5053/EsriBackend/GetRecentSales
+//School District: http://localhost:5053/EsriBackend/GetSchoolDistrict
+//PLSS Map: http://localhost:5053/EsriBackend/GetPLSSMap
+//WMS: http://localhost:5053/EsriBackend/GetWmsData
