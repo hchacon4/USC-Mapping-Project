@@ -1,9 +1,12 @@
 node_modules/
-API/bin/
 .DS_Store
 package-lock.json
 
 deploy_test/obj/
+API/bin/
+API/obj/
+API/myapp/
+# Technically, the wwwroot directory is not need either, but this directory is standard in .NET builds.
 
 Mapping-System/yarn.lock
 Mapping-System/package-lock.json
