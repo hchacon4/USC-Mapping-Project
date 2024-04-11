@@ -30,7 +30,7 @@ Consider setting up an environment such as a conda environment to install the ne
   * React Build: Install dependencies and React app
     * `cd Mapping-System`
     * `npm install`   // installs this package's dependencies.
-    * `npm run buildApp`   // builds the this package for web app consumption (as opposed to building the package as an npm React component library).
+    * `npm run buildApp`   // builds this package for web app consumption (as opposed to building the package as an npm React component library).
     * `cd ..`
   * .Net Build: Build, publish, and copy Reach build to .Net directory -- i.e. `./API` directory.
     * `cd API`
