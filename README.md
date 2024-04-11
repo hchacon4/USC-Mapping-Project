@@ -17,3 +17,28 @@ Main is considered "live." Only merge develop and main when you are sure the dev
 * Remember:
   * Merge `feature/<featurename>` to `develop` and not directly to `main`.
   * Only push `develop` to `main` if you are certain it is functional and tested.
+
+### Build Project Locally
+The following instruction require a bash/zsh terminal as well as `dotnet` and `npm` commands.
+Consider setting up an environment such as a conda environment to install the necessary commands.
+* Open a terminal.
+* Clone repo to a directory of your choosing on your system.
+  * e.g. `git clone git@github.com:hchacon4/USC-Mapping-Project.git`
+* You should now see a `USC-Mapping-Project` directory.
+* Run `cd USC-Mapping-Project`
+* Run the following commands to build the project:
+  * React Build: Install dependencies and React app
+    * `cd Mapping-System`
+    * `npm install`   // installs this package's dependencies.
+    * `npm run buildApp`   // builds this package for web app consumption (as opposed to building the package as an npm React component library).
+    * `cd ..`
+  * .Net Build: Build, publish, and copy Reach build to .Net directory -- i.e. `./API` directory.
+    * `cd API`
+    * `cp -a ../Mapping-System/dist/app/. ./wwwroot`
+  * The project is now built and ready to lauch.
+* Run the .Net web application
+  * `dotnet run`
+* View the website endpoint
+  * Once the web app is running, one of the info line printouts should say:
+    * `Now listening on: http://localhost:<####>` where `<####>` is replaced by a port number.
+  * Open a browser tab and enter the provided localhost URL.
