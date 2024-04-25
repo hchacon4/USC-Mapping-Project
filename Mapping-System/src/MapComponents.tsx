@@ -8,7 +8,7 @@ import VectorTileLayer from "react-esri-leaflet/plugins/VectorTileLayer";
 import {
   // BasemapLayer,
   // FeatureLayer,
-  // DynamicMapLayer,
+  DynamicMapLayer,
   TiledMapLayer,
   // ImageMapLayer,
 } from "react-esri-leaflet";
@@ -88,6 +88,10 @@ export const Layers: React.FC<LayersProps> = ({
     console.log(`%c <HeatmapLayer /> added:`, "font-weight: bold");
     console.log(heatmapLayerRef.current);
   });
+  dynamicMapLayerRef.current?.once("add", () => {
+    console.log(`%c <DynamicMapLayer /> added:`, "font-weight: bold");
+    console.log(dynamicMapLayerRef.current);
+  });
 
   return (
     <LayersControl
@@ -139,6 +143,15 @@ export const Layers: React.FC<LayersProps> = ({
           }
         />
       </LayersControl.BaseLayer>
+
+      <LayersControl.Overlay name="Field Book Service">
+        <DynamicMapLayer
+          // ref={dynamicMapLayerRef}
+          url={
+            "https://assessor.gis.lacounty.gov/oota/rest/services/MAPPING/FieldBooks_AMP/MapServer"
+          }
+        />
+      </LayersControl.Overlay>
     </LayersControl>
   );
 };
