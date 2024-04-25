@@ -42,3 +42,16 @@ Consider setting up an environment such as a conda environment to install the ne
   * Once the web app is running, one of the info line printouts should say:
     * `Now listening on: http://localhost:<####>` where `<####>` is replaced by a port number.
   * Open a browser tab and enter the provided localhost URL.
+
+### Automated Deployment Details
+The main branch deploys to Azure Web App when a push to the main branch is successful (i.e. push-to-main trigger).  
+The process is automated using a GitHub workflow YAML script. See `.github/workflows/azure-webapps-dotnet-core.yml` for details.
+#### Overview
+On push-to-main trigger, a GitHub runner (i.e. compute resource instance) spins up and executes the following job steps:
+* Build the frontend code located in the `Mapping-System` directory using `npm` cli.
+* Build the backend code located in the `API` directory using `dotnet` cli.
+* Copy contents of frontend build to `wwwroot` directory of the backend build.
+* Zip the backend build -- including the files copied from the frontend -- for deployment.
+* Makes a request to the Azure Web App account to post the zipped project.  
+
+GitHub secret environment variables are used to both authenticate post requests from GitHub account to Azure account, and also hide creditials from the public.
