@@ -50,7 +50,7 @@ The process is automated using a GitHub workflow YAML script. See `.github/workf
 On push-to-main trigger, a GitHub runner (i.e. compute resource instance) spins up and executes the following job steps:
 * Build the frontend code located in the `Mapping-System` directory using `npm` cli.
 * Build the backend code located in the `API` directory using `dotnet` cli.
-* Copy contents of front end build to `wwwroot` directory of the backend build.
+* Copy contents of frontend build to `wwwroot` directory of the backend build.
 * Zip the backend build -- including the files copied from the frontend -- for deployment.
-* Makes a request to the Azure Web App account to post the zipped project.
+* Makes a request to the Azure Web App account to post the zipped project.  
 GitHub secret environment variables are used to both authenticate post request from GitHub account to Azure account, and also hide creditials from the public.
