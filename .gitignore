@@ -8,6 +8,8 @@ API/obj/
 API/myapp/
 # Technically, the wwwroot directory is not need either, but this directory is standard in .NET builds.
 
+.mono
+
 Mapping-System/yarn.lock
 Mapping-System/package-lock.json
 # Important: do not post API keys or URLs to the public repo.
