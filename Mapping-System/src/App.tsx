@@ -88,6 +88,7 @@ export const Layers: React.FC<LayersProps> = ({
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
+        console.log(response)
         return response.json(); // Parse the JSON response
       })
       .then((data) => {
@@ -116,7 +117,7 @@ export const Layers: React.FC<LayersProps> = ({
       }}
     >
       <LayersControl.BaseLayer name="Vector Tile Layer (Base Map)">
-        <VectorTileLayer ref={vectorTileLayerRef} url={baseMapUrl} />
+
       </LayersControl.BaseLayer>
 
       <LayersControl.BaseLayer name="(2014 high res imagery)">
@@ -455,7 +456,7 @@ function MapContent() {
       zoom={10}
       center={{ lat: 33.97180352632852, lng: -118.43073695898059 }}
     >
-      <WMSTileLayer
+      {/* <WMSTileLayer
         layers={"PICT-LARIAC5--u6URKu1Fx3"}
         url={
           "https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wms"
@@ -465,7 +466,7 @@ function MapContent() {
         transparent={true}
         format="image/png"
         opacity={0.8}
-      />
+      /> */}
       <Layers setLayersControlRef={setLayersControlRef} />
     </MapContainer>
   );
@@ -477,15 +478,8 @@ export default function App() {
   return (
     <>
       <div>
-        <Nav /> {/*Call the nav function here*/}
-        <div className="_accordian_padding"></div>
-        <Summary />
-        <div className="_accordian_padding"></div>
-        <Building_Land_Characteristics />
-        <div className="_accordian_padding"></div>
-        <Event_History />
-        <div className="_accordian_padding"></div>
-        <Assessment_History />
+        <MapContent/>
+
       </div>
     </>
   );
