@@ -10,7 +10,7 @@ import "leaflet/dist/leaflet.css";
 import { useEffect, useRef, useState } from "react";
 import { MapContainer, LayersControl } from "react-leaflet";
 import VectorTileLayer from "react-esri-leaflet/plugins/VectorTileLayer";
-import { loadModules } from 'esri-loader';
+import { loadModules } from "esri-loader";
 import {
   // BasemapLayer,
   DynamicMapLayer,
@@ -83,7 +83,7 @@ export const Layers: React.FC<LayersProps> = ({
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        console.log(response)
+        console.log(response);
         return response.json(); // Parse the JSON response
       })
       .then((data) => {
@@ -111,9 +111,7 @@ export const Layers: React.FC<LayersProps> = ({
         }
       }}
     >
-      <LayersControl.BaseLayer name="Vector Tile Layer (Base Map)">
-
-      </LayersControl.BaseLayer>
+      <LayersControl.BaseLayer name="Vector Tile Layer (Base Map)"></LayersControl.BaseLayer>
 
       <LayersControl.BaseLayer name="(2014 high res imagery)">
         <TiledMapLayer
@@ -467,7 +465,7 @@ function MapContent() {
   );
 }
 
-function EsriMap({  }) {
+function EsriMap({}) {
   // create a ref to element to be used as the map's container
   const mapEl = useRef(null);
 
@@ -481,145 +479,172 @@ function EsriMap({  }) {
       // first lazy-load the esri classes
       const lods = [
         {
-            level: 0,
-            resolution: 156543.03392800014,
-            scale: 5.91657527591555e8
+          level: 0,
+          resolution: 156543.03392800014,
+          scale: 5.91657527591555e8,
         },
         {
-            level: 1,
-            resolution: 78271.5169639999,
-            scale: 295828763.795777
+          level: 1,
+          resolution: 78271.5169639999,
+          scale: 295828763.795777,
         },
         {
-            level: 2,
-            resolution: 39135.7584820001,
-            scale: 147914381.897889
+          level: 2,
+          resolution: 39135.7584820001,
+          scale: 147914381.897889,
         },
         {
-            level: 3,
-            resolution: 19567.8792409999,
-            scale: 73957190.948944
+          level: 3,
+          resolution: 19567.8792409999,
+          scale: 73957190.948944,
         },
         {
-            level: 4,
-            resolution: 9783.93962049996,
-            scale: 36978595.474472
+          level: 4,
+          resolution: 9783.93962049996,
+          scale: 36978595.474472,
         },
         {
-            level: 5,
-            resolution: 4891.96981024998,
-            scale: 18489297.737236
+          level: 5,
+          resolution: 4891.96981024998,
+          scale: 18489297.737236,
         },
         {
-            level: 6,
-            resolution: 2445.98490512499,
-            scale: 9244648.868618
+          level: 6,
+          resolution: 2445.98490512499,
+          scale: 9244648.868618,
         },
         {
-            level: 7,
-            resolution: 1222.99245256249,
-            scale: 4622324.434309
+          level: 7,
+          resolution: 1222.99245256249,
+          scale: 4622324.434309,
         },
         {
-            level: 8,
-            resolution: 611.49622628138,
-            scale: 2311162.217155
+          level: 8,
+          resolution: 611.49622628138,
+          scale: 2311162.217155,
         },
         {
-            level: 9,
-            resolution: 305.748113140558,
-            scale: 1155581.108577
+          level: 9,
+          resolution: 305.748113140558,
+          scale: 1155581.108577,
         },
         {
-            level: 10,
-            resolution: 152.874056570411,
-            scale: 577790.554289
+          level: 10,
+          resolution: 152.874056570411,
+          scale: 577790.554289,
         },
         {
-            level: 11,
-            resolution: 76.4370282850732,
-            scale: 288895.277144
+          level: 11,
+          resolution: 76.4370282850732,
+          scale: 288895.277144,
         },
         {
-            level: 12,
-            resolution: 38.2185141425366,
-            scale: 144447.638572
+          level: 12,
+          resolution: 38.2185141425366,
+          scale: 144447.638572,
         },
         {
-            level: 13,
-            resolution: 19.1092570712683,
-            scale: 72223.819286
+          level: 13,
+          resolution: 19.1092570712683,
+          scale: 72223.819286,
         },
         {
-            level: 14,
-            resolution: 9.55462853563415,
-            scale: 36111.909643
+          level: 14,
+          resolution: 9.55462853563415,
+          scale: 36111.909643,
         },
         {
-            level: 15,
-            resolution: 4.77731426794937,
-            scale: 18055.954822
+          level: 15,
+          resolution: 4.77731426794937,
+          scale: 18055.954822,
         },
         {
-            level: 16,
-            resolution: 2.38865713397468,
-            scale: 9027.977411
+          level: 16,
+          resolution: 2.38865713397468,
+          scale: 9027.977411,
         },
         {
-            level: 17,
-            resolution: 1.19432856685505,
-            scale: 4513.988705
+          level: 17,
+          resolution: 1.19432856685505,
+          scale: 4513.988705,
         },
         {
-            level: 18,
-            resolution: 0.59716428337097172,
-            scale: 2256.9943526
+          level: 18,
+          resolution: 0.59716428337097172,
+          scale: 2256.9943526,
         },
         {
-            level: 19,
-            resolution: 0.2985821416854858,
-            scale: 1128.497176344
+          level: 19,
+          resolution: 0.2985821416854858,
+          scale: 1128.497176344,
         },
         {
-            level: 20,
-            resolution: 0.1492910708694458,
-            scale: 564.248588172
+          level: 20,
+          resolution: 0.1492910708694458,
+          scale: 564.248588172,
+        },
+      ];
+      loadModules(
+        [
+          "esri/Map",
+          "esri/Basemap",
+          "esri/views/MapView",
+          "esri/layers/WMTSLayer",
+          "esri/widgets/BasemapToggle",
+          "esri/layers/MapImageLayer"
+        ],
+        {
+          css: true,
         }
-    ];
-      loadModules([        "esri/Map",
-      "esri/Basemap",
-      "esri/views/MapView",
-      "esri/layers/WMTSLayer",
-      "esri/widgets/BasemapToggle"], {
-        css: true
-      }).then(([Map, Basemap, MapView, WMTSLayer, BasemapToggle]) => {
+      ).then(([Map, Basemap, MapView, WMTSLayer, BasemapToggle,MapImageLayer ]) => {
         // then we load a web map from an id
         const plainIGNBasemap = new Basemap({
           baseLayers: [
             new WMTSLayer({
-              url:"https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wmts",
-              activeLayer: { id:"PICT-LARIAC5--u6URKu1Fx3", tileMatrixSetId: "GoogleMapsCompatible" },
-              corsEnabled:"svc.pictometry.com"
+              url: "https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wmts",
+              activeLayer: {
+                id: "PICT-LARIAC6--LXMv769zxs",
+                tileMatrixSetId: "GoogleMapsCompatible",
+              },
+              dependentLayers:["streetlabel"],
+              corsEnabled: "svc.pictometry.com",
+              referenceLayers:[ ]
+            }),
+            new MapImageLayer({
+              visible:false,url: "https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic/Street_Labels/MapServer"
             })
-          ]
+            // new WMTSLayer({
+            //   url: "https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wmts",
+            //   activeLayer: {
+            //     id: "PICT-LARIAC5--SxmDvXHvYJ",
+            //     tileMatrixSetId: "GoogleMapsCompatible",
+            //   },
+            //   corsEnabled: "svc.pictometry.com",
+            //   dependentLayers: ["streetlabel"],
+            // }),
+          ],
         });
 
         const orthoIGNBasemap = new Basemap({
           baseLayers: [
             new WMTSLayer({
               url: "https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wmts",
-              activeLayer: { id: "PICT-LARIAC5--SxmDvXHvYJ", tileMatrixSetId:"GoogleMapsCompatible" },
-              corsEnabled:"svc.pictometry.com"
-            })
-          ]
+              activeLayer: {
+                id: "PICT-LARIAC5--SxmDvXHvYJ",
+                tileMatrixSetId: "GoogleMapsCompatible",
+              },
+              corsEnabled: "svc.pictometry.com",
+              dependentLayers: ["streetlabel"],
+            }),
+          ],
         });
 
         const map = new Map({
           basemap: plainIGNBasemap,
-          center: [-118.648, 34.07314], 
+          center: [-118.648, 34.07314],
           // center: {
-          //   type: "point", 
-          //   x: 699, 
+          //   type: "point",
+          //   x: 699,
           //   y: 1633,
           //   spatialReference: {
           //     wkid: 102100,
@@ -627,23 +652,23 @@ function EsriMap({  }) {
           // },
           // },
           // //zoom doesn't work because no LOD
-          zoom:10,
-          constraints:{
-            lods:lods
+          zoom: 10,
+          constraints: {
+            lods: lods,
           },
           spatialReference: {
             wkid: 102100,
-            latestWkid: 3857
-        },
+            latestWkid: 3857,
+          },
         });
 
         const view = new MapView({
-          container: mapEl.current,
+          container: mapEl.current, // add via ref
           map: map,
-          center: [-118.648, 34.07314], 
+          center: [-118.648, 34.07314],
           // center: {
-          //   type: "point", 
-          //   x: 699, 
+          //   type: "point",
+          //   x: 699,
           //   y: 1633,
           //   spatialReference: {
           //     wkid: 102100,
@@ -651,23 +676,23 @@ function EsriMap({  }) {
           // },
           // },
           // //zoom doesn't work because no LOD
-          zoom:10,
-          constraints:{
-            lods:lods
+          zoom: 10,
+          constraints: {
+            lods: lods,
           },
           spatialReference: {
             wkid: 102100,
-            latestWkid: 3857
-        },
+            latestWkid: 3857,
+          },
         });
 
         view.ui.add(
           new BasemapToggle({
             view,
-            nextBasemap: orthoIGNBasemap
+            nextBasemap: orthoIGNBasemap,
           }),
           "bottom-left"
-        )
+        );
       });
       return () => {
         // clean up the map view
@@ -690,9 +715,8 @@ export default function App() {
     <>
       <div>
         {/* <MapContent/> */}
-        <EsriMap/>
+        <EsriMap />
       </div>
     </>
   );
 }
-
