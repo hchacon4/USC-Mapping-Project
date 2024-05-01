@@ -25,6 +25,10 @@ const plainIGNBasemap = new Basemap({
     })
   ],
 });
+
+const streetMap = new MapImageLayer({
+  visible:true,url: "https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic/Street_Labels/MapServer"
+})
 export const createMapView = (url:string,coordinates:number[],mapRef:any) => {
 
   
@@ -364,9 +368,10 @@ const EsriWithRef = forwardRef(function EsriMap(props:EsriMapProps,ref) {
       return
     }
     if(isChecked){
-      view.map.add(      new MapImageLayer({
-        visible:true,url: "https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic/Street_Labels/MapServer"
-      }))
+      view.map.add(streetMap)
+    }
+    else{
+      view.map.remove(streetMap)
     }
   },[view,isChecked])
     //watch or event callbacks
