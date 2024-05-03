@@ -16,7 +16,15 @@ import PictureMarkerSymbol from "@arcgis/core/symbols/PictureMarkerSymbol.js";
 import Extent from "@arcgis/core/geometry/Extent.js";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer.js";
 import LayerSearchSource from "@arcgis/core/widgets/Search/LayerSearchSource.js";
+import TileLayer from "@arcgis/core/layers/TileLayer.js";
 
+// const streetBaseMap = new Basemap({
+//   baseLayers:[
+//     new TileLayer({
+//       url:"https://cache.gis.lacounty.gov/cache/rest/services/LACounty_Cache/LACounty_StreetMap/MapServer"
+//     })
+//   ]
+// })
 const wmtsBaseMap = new Basemap({
   baseLayers: [
     new WMTSLayer({
@@ -38,6 +46,20 @@ const assessorParcelMap = new MapImageLayer({
   visible: true,
   url: "https://cache.gis.lacounty.gov/cache/rest/services/LACounty_Cache/LACounty_Parcel/MapServer",
 });
+
+const taxRateMap = new FeatureLayer({
+  visible:true,
+  url:"https://assessor.gis.lacounty.gov/oota/rest/services/MAPPING/Tax_Rate_Area_AMP/MapServer"
+})
+const communitiesMap = new FeatureLayer({
+  visible:true,
+  url:"https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic/Political_Boundaries/MapServer/23"
+})
+
+const mobileHomeMap = new FeatureLayer({
+  visible:true,
+  url:"https://assessor.gis.lacounty.gov/oota/rest/services/MAPPING/MobileHomes_Service_AMP/MapServer"
+})
 // export const createMapView = (url:string,coordinates:number[],mapRef:any) => {
 
 //   const wmtsBaseMap = new Basemap({
@@ -96,21 +118,6 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
   //setView(createMapView(mapRef.current,mapProperties,viewProperties))
   const createMapView = (mapRef: any) => {
     const lods = LODS;
-    const wmtsBaseMap = new Basemap({
-      baseLayers: [
-        new WMTSLayer({
-          url: "https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wmts",
-          activeLayer: {
-            id: "PICT-LARIAC6--LXMv769zxs",
-            tileMatrixSetId: "GoogleMapsCompatible",
-          },
-        }),
-        new MapImageLayer({
-          visible: true,
-          url: "https://arcgis.gis.lacounty.gov/arcgis/rest/services/LACounty_Dynamic/Street_Labels/MapServer",
-        }),
-      ],
-    });
 
     const view = new MapView({
       container: mapRef.current, // add via ref
@@ -195,7 +202,11 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
   };
   const [isCheckedStreetLabel, setIsCheckedStreetLabel] = useState(false);
   const [isCheckedAssessorParcel,setIsCheckedAssessorParcel] = useState(false)
+  const [isCheckedTaxRate,setIsCheckedTaxRate] = useState(false)
+  const [isCheckedCommunitiesMap,setIsCheckedCommunitiesMap] = useState(false)
+  const [isMobileHomeChecked,setIsMobileHomeChecked] = useState(false)
   const [coordinates, setCoordinates] = useState([-118.2417, 34.0541]);
+  const [selectedOption, setSelectedOption] = useState("street");
   // const [map,setMap] = useState()
   //const [view,setView] =useState(null)
   // Function to handle checkbox change
@@ -207,6 +218,23 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
     setIsCheckedAssessorParcel(!isCheckedAssessorParcel)
   }
 
+  const handleTaxRateCheck = ()=>{
+    setIsCheckedTaxRate(!isCheckedTaxRate)
+  }
+  const handleCommunityCheck = ()=>{
+    setIsCheckedCommunitiesMap(!isCheckedCommunitiesMap)
+  }
+
+  const handleMobileHome= ()=>{
+    setIsMobileHomeChecked(!isMobileHomeChecked)
+  }
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value); // Update the selected option
+  };
+  const handleBaseMapChange = (map:any)=>{
+    setBasemap(map)
+  }
   // use a side effect to create the map after react has rendered the DOM
   useEffect(
     () => {
@@ -231,6 +259,44 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
     view.map.basemap = basemap;
   }, [view]);
 
+  useEffect(()=>{
+    if (!view) {
+      //this was called before setView()
+      return;
+    }
+
+      if(view.map.basemap){
+        view.map.basemap.destroy();
+      }
+    if(selectedOption==="street"){
+      const streetBaseMap = new Basemap({
+                      baseLayers:[
+                        new TileLayer({
+                          url:"https://cache.gis.lacounty.gov/cache/rest/services/LACounty_Cache/LACounty_StreetMap/MapServer"
+                        })
+                      ]
+                    })
+     
+      view.map.basemap = streetBaseMap
+    }
+
+    if(selectedOption==="aerial 2017"){
+      const wmtsBaseMap = new Basemap({
+        baseLayers: [
+          new WMTSLayer({
+            url: "https://svc.pictometry.com/Image/BCC27E3E-766E-CE0B-7D11-AA4760AC43ED/wmts",
+            activeLayer: {
+              id: "PICT-LARIAC6--LXMv769zxs",
+              tileMatrixSetId: "GoogleMapsCompatible",
+            },
+          }),
+        ],
+      });
+
+      view.map.basemap = wmtsBaseMap
+    }
+  },[view,selectedOption])
+
   //add/remove a reference layer
   useEffect(() => {
     if (!view) {
@@ -248,7 +314,27 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
     else{
       view.map.remove(assessorParcelMap)
     }
-  }, [view, isCheckedStreetLabel,isCheckedAssessorParcel]);
+
+    if(isCheckedTaxRate){
+      view.map.add(taxRateMap)
+    }
+    else{
+      view.map.remove(taxRateMap)
+    }
+    if(isCheckedCommunitiesMap){
+      view.map.add(communitiesMap)
+    }
+    else{
+      view.map.remove(communitiesMap)
+    }
+
+    if(isMobileHomeChecked){
+      view.map.add(mobileHomeMap)
+    }
+    else{
+      view.map.remove(mobileHomeMap)
+    }
+  }, [view, isCheckedStreetLabel,isCheckedAssessorParcel,isCheckedTaxRate,isCheckedCommunitiesMap,isMobileHomeChecked]);
   //watch or event callbacks
 
   // useEffect(()=>{
@@ -265,6 +351,35 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
 
   return (
     <>
+    <div>
+    <div>
+      {/* Radio option 1 */}
+      <label>
+        <input
+          type="radio"
+          value="street"
+          checked={selectedOption === "street"}
+          onChange={handleOptionChange}
+        />
+        Street
+      </label>
+      <br />
+
+      {/* Radio option 2 */}
+      <label>
+        <input
+          type="radio"
+          value="aerial 2017"
+          checked={selectedOption === "aerial 2017"}
+          onChange={handleOptionChange}
+        />
+        Aerial 2017
+      </label>
+      <br />
+    </div>
+    </div>
+    <div>
+    <div>
       <label>
         <input
           type="checkbox"
@@ -273,6 +388,8 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
         />
         Street labels
       </label>
+      </div>
+      <div>
       <label>
         <input
           type="checkbox"
@@ -281,7 +398,39 @@ const EsriWithRef = forwardRef(function EsriMap(props: EsriMapProps, ref) {
         />
         Assesor Parcel
       </label>
-      <div style={{ height: 300 }} ref={ref}></div>
+      </div>
+      <div>
+      <label>
+        <input
+          type="checkbox"
+          checked={isCheckedTaxRate}
+          onChange={handleTaxRateCheck}
+        />
+        Tax Rate
+      </label>
+      </div>
+      <div>
+      <label>
+        <input
+          type="checkbox"
+          checked={isCheckedCommunitiesMap}
+          onChange={handleCommunityCheck}
+        />
+        Communities
+      </label>
+      </div>
+      <div>
+      <label>
+        <input
+          type="checkbox"
+          checked={isMobileHomeChecked}
+          onChange={handleMobileHome}
+        />
+        Mobile Home
+      </label>
+      </div>                       
+      </div>
+      <div style={{ height: 800 }} ref={ref}></div>
     </>
   );
 });
